@@ -114,3 +114,8 @@ Output:
 
 Output:
 Prints result to console and `output/output.txt`
+
+## Credits
+
+The **original implementation** of the signature scheme is by [@skyrmi](https://github.com/skyrmi).  
+Only the **documentation** (including this README and Doxygen-generated docs) was done by me.

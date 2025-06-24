@@ -92,6 +92,56 @@ $(function(){initNavTree('index.html','',''); });
 </div><!--header-->
 <div class="contents">
 <a href="doxygen_crawl.html"></a>
+ <div class="contents">
+  <h1>Signature Scheme Implementation</h1>
+  <p>This repository contains an implementation of a post-quantum code based signature scheme in C.</p>
+
+  <h2>Prerequisites</h2>
+  <ul>
+    <li>C compiler</li>
+    <li>Make build tool</li>
+  </ul>
+
+  <h2>Setup</h2>
+  <h3>1. Install Required Libraries</h3>
+  <p>This project depends on <a href="https://github.com/flintlib/flint">FLINT</a> and <a href="https://doc.libsodium.org/installation">libsodium</a>.</p>
+
+  <h4>FLINT</h4>
+  <pre><code>apt install libgmp-dev libmpfr-dev make autoconf libtool-bin
+git clone https://github.com/flintlib/flint.git && cd flint
+./bootstrap.sh
+./configure
+make && make check</code></pre>
+
+  <h4>libsodium</h4>
+  <pre><code>./configure
+make && make check
+make install</code></pre>
+  <p>Run <code>ldconfig</code> after install.</p>
+
+  <h3>2. Build the Project</h3>
+  <pre><code>git clone https://github.com/skyrmi/signature-scheme.git
+cd signature-scheme
+make</code></pre>
+
+  <h2>Usage</h2>
+  <p>This scheme supports:</p>
+  <ul>
+    <li><b>keygen</b> — Generate keys</li>
+    <li><b>sign</b> — Sign a message</li>
+    <li><b>verify</b> — Verify a signature</li>
+  </ul>
+
+  <h3>Key Generation</h3>
+  <pre><code>./sig keygen [--use-seed] [--regenerate]</code></pre>
+
+  <h3>Signing a Message</h3>
+  <pre><code>./sig sign -m &lt;message-file&gt; [-o &lt;signature-file&gt;]</code></pre>
+
+  <h3>Verifying a Signature</h3>
+  <pre><code>./sig verify -m &lt;message-file&gt; -s &lt;signature-file&gt;</code></pre>
+</div>
+
 </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

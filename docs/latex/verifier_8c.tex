@@ -1,0 +1,69 @@
+\doxysection{signature-\/scheme/src/verifier.c File Reference}
+\hypertarget{verifier_8c}{}\label{verifier_8c}\index{signature-\/scheme/src/verifier.c@{signature-\/scheme/src/verifier.c}}
+
+
+This file contains the implementation of the signature verification function.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}verifier.\+h"{}}\newline
+{\ttfamily \#include "{}matrix.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+{\ttfamily \#include "{}constants.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{verifier_8c_a02f3b5f577378454c07b9e92ea9b3706}{verify\+\_\+signature}} (nmod\+\_\+mat\+\_\+t bin\+\_\+hash, size\+\_\+t message\+\_\+len, unsigned long sig\+\_\+len, nmod\+\_\+mat\+\_\+t signature, nmod\+\_\+mat\+\_\+t F, struct \mbox{\hyperlink{structcode}{code}} C\+\_\+A, nmod\+\_\+mat\+\_\+t \mbox{\hyperlink{params_8c_abb953f253a118190024fe5adb406bfcf}{H\+\_\+A}}, FILE \texorpdfstring{$\ast$}{*}output\+\_\+file)
+\begin{DoxyCompactList}\small\item\em This function verifies a digital signature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the signature verification function. 
+
+It verifies a digital signature by checking if the product of the binary hash of the message and the generator matrix equals the product of the parity-\/check matrix and the transposed signature. It uses the FLINT library for matrix operations and prints debug information. 
+
+\label{doc-func-members}
+\Hypertarget{verifier_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{verifier_8c_a02f3b5f577378454c07b9e92ea9b3706}\index{verifier.c@{verifier.c}!verify\_signature@{verify\_signature}}
+\index{verify\_signature@{verify\_signature}!verifier.c@{verifier.c}}
+\doxysubsubsection{\texorpdfstring{verify\_signature()}{verify\_signature()}}
+{\footnotesize\ttfamily \label{verifier_8c_a02f3b5f577378454c07b9e92ea9b3706} 
+void verify\+\_\+signature (\begin{DoxyParamCaption}\item[{nmod\+\_\+mat\+\_\+t}]{bin\+\_\+hash}{, }\item[{size\+\_\+t}]{message\+\_\+len}{, }\item[{unsigned long}]{sig\+\_\+len}{, }\item[{nmod\+\_\+mat\+\_\+t}]{signature}{, }\item[{nmod\+\_\+mat\+\_\+t}]{F}{, }\item[{struct \mbox{\hyperlink{structcode}{code}}}]{C\+\_\+A}{, }\item[{nmod\+\_\+mat\+\_\+t}]{H\+\_\+A}{, }\item[{FILE \texorpdfstring{$\ast$}{*}}]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+
+
+This function verifies a digital signature. 
+
+This function takes a binary hash of the message, the length of the message, the length of the signature, the signature itself, the matrix F, the code C\+\_\+A, and the parity-\/check matrix H\+\_\+A. At first, it transposes the binary hash and then computes the product of the matrix F and the transposed binary hash. Then transposes the signature and computes the product of the parity-\/check matrix H\+\_\+A and the transposed signature. Finally, it checks if the two resulting matrices are equal, indicating that the signature is valid. \begin{DoxyNote}{Note}
+The function prints debug information if the PRINT flag is set. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em bin\+\_\+hash} & It is a matrix that holds the binary hash of the message. \\
+\hline
+{\em message\+\_\+len} & It is the length of the message in bits. \\
+\hline
+{\em sig\+\_\+len} & It is the length of the signature in bits. \\
+\hline
+{\em signature} & It is a matrix that holds the signature to be verified. \\
+\hline
+{\em F} & It is a matrix that holds the product of the parity-\/check matrix H\+\_\+A and the transposed hybrid generator matrix G\+\_\+star\+\_\+T. This is used for debugging or verification purposes. \\
+\hline
+{\em C\+\_\+A} & It is a structure that holds the parameters of the code, including the length of the code (n), the length of the message (k), and the minimum distance (d). \\
+\hline
+{\em H\+\_\+A} & It is the parity-\/check matrix for the derived code C\+\_\+A, which is used to ensure that the generated signature meets the required properties. \\
+\hline
+{\em output\+\_\+file} & It is a file pointer to the output file where debug information will be printed if the PRINT flag is set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void It does not return any value but prints the verification result to the output file. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function uses the Sodium library for cryptographic operations and the FLINT library for matrix operations. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{matrix_8c_aac32546c5107ae59188824ab1e6520d2}{print\+\_\+matrix} for printing matrices 
+\end{DoxySeeAlso}
